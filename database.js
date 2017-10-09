@@ -10,8 +10,10 @@ function connectDatabase() {
   if (process.env.DEV) {
     // Use the local URI to Mongo'
     const localURI = config.database;
-    connection = mongoose.connect(localURI)
-      .then(() => {
+    
+    connection = mongoose.createConnection(localURI,  {
+      useMongoClient: true,
+    }).then(() => {
         console.log('Local database connected successfully');
       }).catch((err) => {
         console.error(err);
@@ -19,8 +21,9 @@ function connectDatabase() {
   }
   // Prodution mode
   if (process.env.MONGODB_URI) {
-    connection = mongoose.connect(process.env.MONGODB_URI)
-      .then(() => {
+    connection = mongoose.createConnection(localURI,  {
+      useMongoClient: true,
+    }).then(() => {
         console.log('Database connected successfully');
       }).catch((err) => {
         console.error(err);
