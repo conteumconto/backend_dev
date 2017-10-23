@@ -7,34 +7,39 @@ const mongoose = require('mongoose');
 const studentsRestriction = [{
   type: mongoose.Schema.Types.ObjectId,
   ref: 'Student',
-  required: true,
+  required: true
 }];
 
 const titleRestriction = {
   type: String,
   required: [true, 'no title given'],
   minlength: [1, 'title is too short'],
-  max: [40, 'title is too long'],
+  max: [40, 'title is too long']
 };
 
 const summaryRestriction = {
-  type: String,
+  type: String
 };
 
 const tagsRestriction = [{
-  type: String,
+  type: String
 }];
 
 const activeRestriction = {
   type: Boolean,
-  default: true,
+  default: true
 };
 
 const chaptersRestriction = [{
   type: mongoose.Schema.Types.ObjectId,
   ref: 'Chapters',
-  required: true,
+  required: true
 }];
+
+const photoRestriction = {
+  type: Object,
+  required: true
+};
 
 /**
  * Book Schema
@@ -47,6 +52,7 @@ const BookSchema = new mongoose.Schema({
   tags: tagsRestriction,
   active: activeRestriction,
   chapters: chaptersRestriction,
+  photo: photoRestriction
 });
 
 
